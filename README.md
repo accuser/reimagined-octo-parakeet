@@ -114,7 +114,11 @@ If any of these are missing, create them now. A minimal `_config.yml` looks like
 title: My DevOps Blog
 description: Built as part of a Level 5 DevOps learning guide.
 theme: minima
+exclude:
+  - README.md
 ```
+ 
+> ⚠️ **The `exclude` line is important.** Without it, Jekyll will render `README.md` as the site's index page — meaning learners visiting your GitHub Pages URL will see this guide rather than the blog. Adding `README.md` to the exclude list tells Jekyll to ignore it during the build.
 
 A minimal post (`_posts/2024-01-01-hello-world.md`):
 
