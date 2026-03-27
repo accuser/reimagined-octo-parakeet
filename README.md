@@ -132,6 +132,23 @@ date: 2024-01-01
 This is my first post. The pipeline that published it is the point.
 ```
 
+Your `index.md` should be a proper blog homepage that lists your posts, not just a blank file. Jekyll uses [Liquid](https://shopify.github.io/liquid/) templating to generate this list dynamically:
+ 
+```markdown
+---
+layout: home
+title: My DevOps Blog
+---
+ 
+## Posts
+ 
+{% for post in site.posts %}
+- [{{ post.title }}]({{ post.url }}) — {{ post.date | date: "%-d %B %Y" }}
+{% endfor %}
+```
+ 
+This means the homepage will update automatically every time you add a new post — no manual editing required. That automatic update, triggered by a push, is your first taste of how automation removes toil.
+
 **2. Add the workflow.** In GitHub, go to **Actions → New workflow** and search for **"GitHub Pages Jekyll"** (under the *Pages* category). The description reads: *"Package a Jekyll site with GitHub Pages dependencies preinstalled."*
 
 Click **Configure**, review the YAML, and commit it to `main`.
